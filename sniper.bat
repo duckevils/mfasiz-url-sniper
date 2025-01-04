@@ -1,4 +1,6 @@
 @echo off
-title discord.gg/1937
+:DUCKEVILS
 node 1937x1978.mjs
-pause
+echo.
+echo 1 9 3 7
+goto DUCKEVILS
