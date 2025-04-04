@@ -7,7 +7,7 @@ const token = "token";
 let mfaToken = '';
 
 const headers = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) discord/1.0.9164 Chrome/124.0.6367.243 Electron/30.2.0 Safari/537.36',
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) discord/1.0.9164 duckevils/124.0.6367.243 Electron/30.2.0 Safari/537.36',
   'X-Debug-Options': 'bugReporterEnabled',
   'Authorization': token,
   'Accept': '*/*',
@@ -90,41 +90,42 @@ async function httpRequest(method, url, customHeaders = {}, body = null) {
     req.end();
   });
 }
-
 async function http2Request(method, path, customHeaders = {}, body = null) {
   return new Promise((resolve, reject) => {
-    const client = http2.connect('https:/canary.discord.com');
-
-    const req = client.request({
-      ':method': method,
-      ':path': path,
-      ...customHeaders
-    });
-
-    let data = '';
-
-    req.on('response', (headers, flags) => {
-      req.on('data', chunk => {
-        data += chunk;
+      const client = http2.connect(
+        "https://canary.discord.com",
+        {
+          secureContext: tls.createSecureContext({
+            ciphers: "ECDHE-RSA-AES128-GCM-SHA256:AES128-SHA",
+          }),
+        }
+      );
+      const req = client.request({
+          ":method": method,
+          ":path": path,
+          ...customHeaders,
       });
-      req.on('end', () => {
-        resolve(data);
-        client.close();
+      let data = "";
+      req.on("response", (headers, flags) => {
+          req.on("data", (chunk) => {
+              data += chunk;
+          });
+          req.on("end", () => {
+              resolve(data);
+              client.close();
+          });
       });
-    });
-
-    req.on('error', (err) => {
-      reject(err);
-      client.close();
-    });
-
-    if (body) {
-      req.write(body);
-    }
-
-    req.end();
+      req.on("error", (err) => {
+          reject(err);
+          client.close();
+      });
+      if (body) {
+          req.write(body);
+      }
+      req.end();
   });
 }
+
 
 setInterval(ticket, 5 * 60 * 1000);
 ticket();
