@@ -1,5 +1,5 @@
 # mfasiz-url-sniper
-ilk once 1937x1978.mjs ve mfa.mjsnin icindeki configleri doldurun ondan sonra 
+ilk once duckevils.mjs ve mfa.mjsnin icindeki configleri doldurun ondan sonra 
 sniper.batı calıstırın sniper batı calıstırdıkdan sonra bypassmfa.bat calıstırın
 ve mfasiz sniperiniz hazir!
 ## Discord
