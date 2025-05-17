@@ -1,6 +1,6 @@
 "use strict";
 // bu kod github.com/duckevils tarafından yazılmıştır.
-// discord.gg/1988
+// discord.gg/israil
 // duckevils rush zons
 import tls from 'tls';
 import WebSocket from 'ws';
