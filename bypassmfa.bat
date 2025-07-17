@@ -2,5 +2,5 @@
 :DUCKEVILS
 node mfa.mjs
 echo.
-echo 1 9 3 7
+echo duckevils
 goto DUCKEVILS
