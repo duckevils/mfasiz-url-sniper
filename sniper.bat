@@ -1,6 +1,6 @@
 @echo off
 :DUCKEVILS
-node 1937x1978.mjs
+node duckevils.mjs
 echo.
-echo 1 9 3 7
+echo duckevils
 goto DUCKEVILS
